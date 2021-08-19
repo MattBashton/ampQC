@@ -3,15 +3,15 @@
 # ampQC
 
 ## Introduction
-ampQC or Amplicon QC is utility which checks for elevated per-amplicon coverage in a plate negatives bam file. It then scans the rest of the bam files from the plate or sequencing run to see if they have enough coverage to clear contamination (at a desired level) in the corresponding sample amplicons that are high in the negative.  
+ampQC or Amplicon QC is utility which checks for elevated per-amplicon coverage in a plate negative bam file. It then scans the rest of the bam files from the plate or sequencing run to see if they have enough coverage to clear contamination (at a desired level) in the corresponding sample amplicons that were high in the negative.  
 
-Threshold values are user definable, a default of mean depth of 100, and uplift multiplier of 10 are set. This means should an amplicon be high in the negative at a depth of 200 reads, all samples on the plate would have to have over 2000 reads of mean depth in the corresponding amplicon to clear the QC check. Such a scenario would mean that potential contamination would be present at a 10% allelic frequency.  The assumption here being a negative control has similar levels of contamination to other samples on the same plate of sequencing prep ("Here be dragons" this may not always be the case).  The end user is encouraged to play around with and adapt these setting for their own usage case and desired levels.  The aim being that some samples from a run with sufficient depth can be salvaged rather than a whole plate of sequencing discarded, depending on levels of contamination and amplicon performance in samples.  ampQC does not currently consider specific allelic frequencies and is based on per amplicon mean death alone.
+Threshold values are user definable, a default of mean depth of 100, and uplift multiplier of 10 are set. This means should an amplicon be high in the negative at a depth of 200 reads, all samples on the plate would have to have over 2,000 reads of mean depth in the corresponding amplicon to clear the QC check. Such a scenario could mean that potential contamination would be present at a 10% allelic frequency.  The assumption here being a negative control has similar levels of contamination to other samples on the same plate of sequencing prep ("Here be dragons" this may not always be the case).  The end user is encouraged to play around with and adapt these setting for their own usage case and desired levels.  The aim being that some samples from a run with sufficient depth can be salvaged, rather than a whole plate of sequencing discarded, depending on levels of contamination and amplicon performance in samples.  ampQC does not currently consider specific allelic frequencies and is based on per amplicon mean death alone.
 
-This utility was designed and tested with detecting high negative control amplicons on the output of SARS-CoV-2 sequencing using the artic [protocol](https://artic.network/ncov-2019), it has been tested against illumina runs from the output of [ncov2019-artic-nf](https://github.com/connor-lab/ncov2019-artic-nf).  It should have utility to other amplicon based sequencing endvours where a library prep negative control is used. The one proviso being ampQC assumes the 4th `name` column of the amplicon [bed file](https://en.wikipedia.org/wiki/BED_(file_format)) is unique for all amplicons.
+This utility was designed and tested with detecting high negative control amplicons in SARS-CoV-2 sequencing with the artic [protocol](https://artic.network/ncov-2019), it has been tested against illumina runs from the output of [ncov2019-artic-nf](https://github.com/connor-lab/ncov2019-artic-nf).  It should have utility to other amplicon based sequencing endeavours where a library prep negative control is used. The one proviso being ampQC assumes the 4th `name` column of the amplicon [bed file](https://en.wikipedia.org/wiki/BED_(file_format)) is unique for all amplicons.
 
 ## Installation
 
-Clone this repo
+Clone this repo:
 
 `git clone https://github.com/MattBashton/ampQC`
 
@@ -31,7 +31,7 @@ Run the install script
 
 `bash setup.sh`
 
-If you're unable to use conda then dependencies are pritty straightforward, GNU grep, awk and parallel, as well as [samtools](https://github.com/samtools/samtools) and [mosdepth](https://github.com/brentp/mosdepth) are required.  The conda env will take care of installing all of these which is important for macOS which ships with inferior BSD versions of awk and grep which lack functionality needed for this utility.
+If you are unable to use conda then dependencies are pretty straightforward, GNU grep, awk and parallel, as well as [samtools](https://github.com/samtools/samtools) and [mosdepth](https://github.com/brentp/mosdepth) are required.  The conda env will take care of installing all of these which is important for macOS which ships with inferior BSD versions of awk and grep which lack functionality needed for this utility.
 
 ## Usage
 
@@ -79,3 +79,6 @@ A list of sample file names (excluding suffix specified in `-s`, [default is `.s
 
 ## Todo
 Implement ASCII character digital VU meter for amplicon depth.
+
+## Tips
+`parallel --will-cite`, will pretty up terminal output, of course please cite GNU parallel!
