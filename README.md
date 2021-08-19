@@ -27,7 +27,7 @@ Activate the conda environment:
 
 `conda activate ampQC`
 
-Run the install script
+Run the install script:
 
 `bash setup.sh`
 
