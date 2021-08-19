@@ -1,0 +1,11 @@
+name: ampQC
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - gawk
+  - grep
+  - mosdepth
+  - parallel
+  - samtools=1.12
