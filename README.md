@@ -1,5 +1,4 @@
 ![ampQC](ampQC.svg)
-
 # ampQC
 
 ## Introduction
