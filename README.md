@@ -65,7 +65,7 @@ Other options:
 ### Usage Example
 
 ```
-ampQC.sh -b ~/artic-ncov2019_v1.2.1/primer_schemes/nCoV-2019/V3/nCoV-2019.insert.bed \
+ampQC.sh -b ~/artic-ncov2019/primer_schemes/nCoV-2019/V4/nCoV-2019.insert.bed \
 -d ncovIllumina_sequenceAnalysis_readMapping/ \
 -n ncovIllumina_sequenceAnalysis_readMapping/NEG-9.sorted.bam \
 -l 9_list.txt -t 100 -u 10 -c 10
